@@ -1,0 +1,19 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.list-item {
+  list-style-type: none;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  padding-left: 0;
+}
+
