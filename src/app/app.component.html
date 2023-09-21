@@ -1,16 +1,7 @@
-<div class="app-wrapper">
+<div>
   <header-app/>
-  <div class="product-list">
-    <div *ngFor="let product of products" class="product">
-      <div class="images">
-        <img src={{product.image}} style="width: 208px; height: 256px; object-fit: contain;"/>
-      </div>
-      <div class="text">
-        <p>{{product.title}}</p>
-        <span>{{product.price}}$</span>
-        <p>Осталось: {{product.rating.count}} шт.</p>
-      </div>
-    </div>
+  <div class="container">
+    <router-outlet></router-outlet>
   </div>
 </div>
 

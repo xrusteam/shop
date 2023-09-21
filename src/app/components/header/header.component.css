@@ -1,13 +1,14 @@
 .header {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0px;
+  padding: 30px;
+  background-color: grey;
 }
 
 .list-item {
   list-style-type: none;
+  cursor: pointer;
 }
 
 .nav-list {
@@ -15,5 +16,6 @@
   flex-direction: row;
   gap: 15px;
   padding-left: 0;
+  margin: 0;
 }
 

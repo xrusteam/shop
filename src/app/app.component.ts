@@ -1,22 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from './services/product.service';
-import { IProduct } from './interfaces/product';
+import { Component } from '@angular/core';
+import {MatIconModule} from '@angular/material/icon'
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'shop';
-
-  products: IProduct[];
-
-  constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.productService.getProducts().subscribe((data: IProduct[]) => {this.products = data})
-  }
 
 }

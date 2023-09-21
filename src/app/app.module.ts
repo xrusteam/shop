@@ -5,7 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Header } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductService } from './services/product.service';
+import {MatIconModule} from '@angular/material/icon'
+
+
+
 
 @NgModule({
   declarations: [
@@ -15,9 +18,10 @@ import { ProductService } from './services/product.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
   ],
-  providers: [ProductService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
