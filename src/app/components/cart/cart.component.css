@@ -1,0 +1,6 @@
+.cart {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding-top: 100px;
+}

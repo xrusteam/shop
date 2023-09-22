@@ -4,7 +4,7 @@
       <img src={{product.image}} style="width: 208px; height: 256px; object-fit: contain;"/>
     </div>
     <div class="text">
-      <p>{{product.title}}</p>
+      <p>{{product.title.substring(0, 20)}}...</p>
       <span>{{product.price}}$</span>
       <p>Осталось: {{product.rating.count}} шт.</p>
     </div>

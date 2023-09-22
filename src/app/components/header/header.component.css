@@ -2,13 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
+  padding: 30px 100px;
   background-color: grey;
 }
 
 .list-item {
   list-style-type: none;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .nav-list {
@@ -17,5 +18,11 @@
   gap: 15px;
   padding-left: 0;
   margin: 0;
+}
+
+.cart-icon {
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
