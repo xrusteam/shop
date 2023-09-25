@@ -1,12 +1,10 @@
 <div class="header">
-    <ul class="nav-list">
-      <li class="list-item" routerLink="/">Главная</li>
-      <li class="list-item" routerLink="/cart">Корзина</li>
-    </ul>
-    <div class="cart-icon">
-      <mat-icon><span class="material-symbols-outlined">
-        shopping_cart
-        </span></mat-icon>
-        <span style="font-weight: 600;">(0)</span>
-    </div>
+  <ul class="nav-list">
+    <li class="list-item" routerLink="/">Главная</li>
+    <li class="list-item" routerLink="/cart">Корзина</li>
+  </ul>
+  <div class="cart-icon">
+    <span class="material-symbols-outlined"> shopping_cart </span>
+    <span style="font-weight: 600">({{ totalCount | async }})</span>
   </div>
+</div>

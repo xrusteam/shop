@@ -7,4 +7,4 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [],
   providers: [],
 })
-export class HeaderModule {}
+export class CartItemModule {}

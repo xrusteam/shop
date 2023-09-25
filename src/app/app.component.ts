@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon'
-
 
 @Component({
   selector: 'app-root',
@@ -9,5 +7,4 @@ import {MatIconModule} from '@angular/material/icon'
 })
 export class AppComponent {
   title = 'shop';
-
 }

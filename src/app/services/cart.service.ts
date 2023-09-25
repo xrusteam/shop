@@ -1,47 +1,61 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IProduct } from '../interfaces/product';
-import { ICartItem } from '../interfaces/cart-item';
-import { BehaviorSubject } from 'rxjs';
+import { ICart, ICartItem } from '../interfaces/cart-item';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
-  providedIn: 'any',
+  providedIn: 'root',
 })
 export class CartService {
   constructor(private http: HttpClient) {}
 
-  private cartSubject = new BehaviorSubject<ICartItem[]>([]);
-  _cart = this.cartSubject.asObservable();
+  private cartSubject = new BehaviorSubject<ICart>({
+    items: [],
+  });
+
+  private getCurrentCart() {
+    return this.cartSubject.value.items;
+  }
 
   addItem(addedItem: ICartItem): void {
-    const currentCart = this.cartSubject.getValue();
-
-    const currentItem = currentCart.find((item) => item.id === addedItem.id);
+    const currentItem = this.getCurrentCart().find(
+      (item) => item.id === addedItem.id
+    );
 
     if (currentItem) {
       currentItem.quantity += 1;
+      currentItem.price = currentItem.quantity * addedItem.price;
     } else {
-      currentCart.push(addedItem);
-      this.cartSubject.next(currentCart);
+      this.getCurrentCart().push(addedItem);
     }
+    this.cartSubject.next({ items: this.getCurrentCart() });
+
+    console.log(this.getCurrentCart());
   }
 
-  getCart(): ICartItem[] {
-    return this.cartSubject.getValue();
+  getCart(): Observable<ICartItem[]> {
+    return this.cartSubject.pipe(map((value) => value.items));
+  }
+
+  getItemCount(): Observable<number> {
+    return this.cartSubject.pipe(map((value) => value.items.length));
   }
 
   deleteItem(id: number): void {
-    const currentCart = this.cartSubject.getValue();
-    const updatedCart = currentCart.filter((item) => item.id !== id);
+    const updatedCart = this.getCurrentCart().filter((item) => item.id !== id);
 
-    this.cartSubject.next(updatedCart);
+    this.cartSubject.next({ items: updatedCart });
   }
 
   deleteAllItems(): void {
-    this.cartSubject.next([]);
+    this.cartSubject.next({ items: [] });
   }
 
-  getItemCount(): number {
-    return this.cartSubject.getValue().length;
+  getTotalPrice(): Observable<number> {
+    return this.cartSubject.pipe(
+      map((item) =>
+        item.items.reduce((accum, current) => accum + current.price, 0)
+      )
+    );
   }
 }

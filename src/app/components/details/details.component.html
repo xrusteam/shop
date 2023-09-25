@@ -1,13 +1,18 @@
 <div>
   <div class="product-detail">
     <div class="image">
-      <img src={{product.image}} style="width: 258px; height: 306px; object-fit: contain;"/>
+      <img
+        src="{{ product.image }}"
+        style="width: 258px; height: 306px; object-fit: contain"
+      />
     </div>
     <div class="detail">
-      <h2 class="title">{{product.title}}</h2>
-      <div class="text">{{product.price}} руб.</div>
+      <h2 class="title">{{ product.title }}</h2>
+      <div class="text">{{ product.price }} руб.</div>
       <div>
-        <button class="btn">Добавить в корзину</button>
+        <button class="btn" (click)="addToCart(product)">
+          Добавить в корзину
+        </button>
       </div>
     </div>
   </div>
