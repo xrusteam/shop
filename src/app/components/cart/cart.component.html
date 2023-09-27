@@ -1,4 +1,18 @@
 <div class="cart">
-  <div>{{ cartItems.length }}</div>
-  <div>Cart</div>
+  <div class="cart-list" *ngIf="cartItems$ | async as cartItems">
+    <div class="cart-info">
+      <p style="font-weight: 900; font-size: 40px; margin: 0">Корзина</p>
+      <p style="margin: 0">Предметов в корзине: {{ totalCount | async }}</p>
+    </div>
+    <cart-item
+      (onDelete)="onDelete($event)"
+      *ngFor="let cartItem of cartItems"
+      [item]="cartItem"
+    />
+  </div>
+  <div
+    style="display: flex; align-items: flex-end; justify-content: space-around"
+  >
+    Итоговая сумма: <span>{{ totalPrice | async }} руб.</span>
+  </div>
 </div>
