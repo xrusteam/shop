@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ICart, ICartItem } from '../interfaces/cart-item';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
@@ -7,7 +6,14 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
   providedIn: 'root',
 })
 export class CartService {
-  constructor(private http: HttpClient) {}
+  constructor() {
+    const savedCart = localStorage.getItem('cart');
+
+    if (savedCart) {
+      const cartItems = JSON.parse(savedCart);
+      this.cartSubject.next({ items: cartItems });
+    }
+  }
 
   private cartSubject = new BehaviorSubject<ICart>({
     items: [],
@@ -30,7 +36,7 @@ export class CartService {
     }
     this.cartSubject.next({ items: this.getCurrentCart() });
 
-    console.log(this.getCurrentCart());
+    localStorage.setItem('cart', JSON.stringify(this.getCurrentCart()));
   }
 
   getCart(): Observable<ICartItem[]> {
@@ -45,10 +51,8 @@ export class CartService {
     const updatedCart = this.getCurrentCart().filter((item) => item.id !== id);
 
     this.cartSubject.next({ items: updatedCart });
-  }
 
-  deleteAllItems(): void {
-    this.cartSubject.next({ items: [] });
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
   }
 
   getTotalPrice(): Observable<number> {

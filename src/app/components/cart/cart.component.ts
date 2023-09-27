@@ -16,13 +16,12 @@ export class Cart implements OnInit {
   totalCount: Observable<number>;
 
   onDelete(id: number) {
-    console.log(id);
     this.cartService.deleteItem(id);
   }
 
   ngOnInit(): void {
     this.cartItems$ = this.cartService.getCart();
-    this.totalPrice = this.cartService.getItemCount();
+    this.totalPrice = this.cartService.getTotalPrice();
     this.totalCount = this.cartService.getItemCount();
   }
 }

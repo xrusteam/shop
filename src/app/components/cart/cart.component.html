@@ -10,4 +10,9 @@
       [item]="cartItem"
     />
   </div>
+  <div
+    style="display: flex; align-items: flex-end; justify-content: space-around"
+  >
+    Итоговая сумма: <span>{{ totalPrice | async }} руб.</span>
+  </div>
 </div>
